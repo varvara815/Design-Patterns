@@ -1,0 +1,63 @@
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+    jest: true,
+  },
+  extends: ['airbnb-base', 'prettier'],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: './tsconfig.json',
+  },
+  ignorePatterns: ['*.config.js', '*.config.cjs', '.eslintrc.cjs', 'jest.config.js'],
+  plugins: ['@typescript-eslint', 'prettier'],
+  rules: {
+    'no-console': 'off',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        ts: 'never',
+        tsx: 'never',
+        js: 'always',
+        jsx: 'always',
+      },
+    ],
+    'class-methods-use-this': 'off',
+    'no-underscore-dangle': 'off',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'linebreak-style': 'off',
+    'comma-dangle': ['error', 'always-multiline'],
+    'no-plusplus': 'off',
+    'prefer-exponentiation-operator': 'off',
+    'no-restricted-properties': 'off',
+    'import/prefer-default-export': 'off',
+    'max-classes-per-file': 'off',
+    'operator-linebreak': 'off',
+    'no-restricted-syntax': 'off',
+    'no-await-in-loop': 'off',
+    'eol-last': ['error', 'always'],
+    'prettier/prettier': 'error',
+    '@typescript-eslint/explicit-function-return-type': 'error',
+    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
+    'no-useless-constructor': 'off',
+    'no-empty-function': 'off',
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+        project: './tsconfig.json',
+      },
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+    'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
+  },
+};
