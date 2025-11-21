@@ -69,6 +69,7 @@ describe('Shape', () => {
       constructor() {
         super('1', 'TestShape');
       }
+
       toString(): string {
         return 'TestShape';
       }

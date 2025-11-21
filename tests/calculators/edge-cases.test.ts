@@ -20,7 +20,9 @@ describe('Calculator Edge Cases', () => {
     ];
 
     expect(RectangleCalculator.calculateArea(emptyPoints)).toBe(0);
+    expect(RectangleCalculator.calculateArea(twoPoints)).toBe(0);
     expect(RectangleCalculator.isRectangle(duplicatePoints)).toBe(false);
+    expect(RectangleCalculator.isConvex(twoPoints)).toBe(false);
     expect(TetrahedronCalculator.calculateVolume(collinearPoints)).toBe(0);
     expect(TetrahedronCalculator.isTetrahedron(collinearPoints)).toBe(false);
   });

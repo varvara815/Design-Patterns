@@ -1,9 +1,9 @@
+import { readFile } from 'fs/promises';
 import { FileReader } from '../../src/processors/FileReader';
 import { LineProcessor } from '../../src/processors/LineProcessor';
 import { ApplicationProcessor } from '../../src/processors/ApplicationProcessor';
 import { FileProcessingError } from '../../src/utils/exceptions';
 import { Rectangle } from '../../src/entities/Rectangle';
-import { readFile } from 'fs/promises';
 
 jest.mock('fs/promises');
 const mockReadFile = readFile as jest.MockedFunction<typeof readFile>;
