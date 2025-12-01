@@ -12,7 +12,12 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.json',
   },
-  ignorePatterns: ['*.config.js', '*.config.cjs', '.eslintrc.cjs', 'jest.config.js'],
+  ignorePatterns: [
+    '*.config.js',
+    '*.config.cjs',
+    '.eslintrc.cjs',
+    'jest.config.js',
+  ],
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
     'no-console': 'off',
