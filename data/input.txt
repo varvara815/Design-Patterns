@@ -1,0 +1,18 @@
+RECTANGLE:1:PerfectRectangle:0 0 0 3 4 3 4 0
+RECTANGLE:2:Square:0 0 0 5 5 5 5 0
+TETRAHEDRON:3:StandardTetrahedron:0 0 0 1 0 0 0 1 0 0 0 1
+
+# Invalid data - insufficient coordinates
+RECTANGLE:4:BadRect1:0 0 0 3 4 3
+TETRAHEDRON:5:BadTetrahedron1:0 0 0 1 0 0 0 1 0
+
+# Invalid data - invalid numbers
+RECTANGLE:6:BadRect2:0 0 0 3a 4 3 4 0
+TETRAHEDRON:7:BadTetrahedron2:0 0 0 1 b 0 0 1 0 0 0 1
+
+# Invalid data - negative radius (if it were a circle)
+# RECTANGLE:8:BadRect3:0 0 0 3 -4 3 4 0
+
+# Comments and empty lines
+
+RECTANGLE:9:AnotherGoodRect:1 1 1 4 4 4 4 1
