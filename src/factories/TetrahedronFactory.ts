@@ -2,6 +2,7 @@ import { AbstractShapeFactory } from './AbstractShapeFactory.js';
 import { Point } from '../entities/Point.js';
 import { Tetrahedron } from '../entities/Tetrahedron.js';
 import { DataValidator } from '../validators/DataValidator.js';
+import { warehouse } from '../warehouse/Warehouse.js';
 
 export class TetrahedronFactory extends AbstractShapeFactory {
   createShape(id: string, name: string, data: string[]): Tetrahedron {
@@ -12,7 +13,7 @@ export class TetrahedronFactory extends AbstractShapeFactory {
       new Point(coordinates[6], coordinates[7], coordinates[8]),
       new Point(coordinates[9], coordinates[10], coordinates[11]),
     ];
-    return new Tetrahedron(id, name, vertices);
+    return new Tetrahedron(id, name, vertices, warehouse);
   }
 
   validateData(data: string[]): number[] {

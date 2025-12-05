@@ -1,7 +1,8 @@
-import { Point } from '../../src/entities/Point';
-import { Rectangle } from '../../src/entities/Rectangle';
-import { Tetrahedron } from '../../src/entities/Tetrahedron';
-import { Shape } from '../../src/entities/Shape';
+import { Point } from '../../src/entities/Point.js';
+import { Rectangle } from '../../src/entities/Rectangle.js';
+import { Tetrahedron } from '../../src/entities/Tetrahedron.js';
+import { Shape } from '../../src/entities/Shape.js';
+import { ShapeMetrics, warehouse } from '../../src/warehouse/Warehouse.js';
 
 describe('Point', () => {
   test('Point creation and methods', () => {
@@ -27,8 +28,8 @@ describe('Rectangle', () => {
       new Point(1, 1),
       new Point(1, 0),
     ];
-    const rectangle = new Rectangle('1', 'Test', points);
-    const returnedPoints = rectangle.getPoints();
+    const rectangle = new Rectangle('1', 'Test', points, warehouse);
+    const returnedPoints = rectangle.points;
 
     expect(rectangle.id).toBe('1');
     expect(rectangle.name).toBe('Test');
@@ -49,7 +50,7 @@ describe('Tetrahedron', () => {
       new Point(0, 1, 0),
       new Point(0, 0, 1),
     ];
-    const tetrahedron = new Tetrahedron('1', 'Test', vertices);
+    const tetrahedron = new Tetrahedron('1', 'Test', vertices, warehouse);
     const returnedVertices = tetrahedron.getVertices();
 
     expect(tetrahedron.id).toBe('1');
@@ -67,11 +68,27 @@ describe('Shape', () => {
   test('Shape base class', () => {
     const shape = new (class extends Shape {
       constructor() {
-        super('1', 'TestShape');
+        super('1', 'TestShape', warehouse);
+      }
+
+      getFirstPoint(): Point {
+        return new Point(0, 0);
+      }
+
+      public getVertices(): Point[] {
+        return [new Point(0, 0)];
       }
 
       toString(): string {
         return 'TestShape';
+      }
+
+      protected notifyWarehouse(): void {
+        // Test implementation
+      }
+
+      public calculateMetrics(): ShapeMetrics {
+        return { area: 10 };
       }
     })();
     expect(shape.id).toBe('1');

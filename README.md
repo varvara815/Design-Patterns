@@ -11,7 +11,9 @@ src/
 ├── calculators/       # Business logic for calculations
 ├── validators/        # Data validation classes
 ├── processors/        # File and data processing
-└── utils/            # Utilities, constants, exceptions
+├── repositories/      # Repository pattern with specifications
+├── warehouse/         # Singleton + Observer pattern for metrics
+└── utils/            # Utilities, constants, exceptions, comparators
 
 data/                 # Input data files
 tests/                # Unit tests organized by modules
@@ -20,6 +22,8 @@ tests/                # Unit tests organized by modules
 ├── factories/        # Factory tests
 ├── validators/       # Validator tests
 ├── processors/       # Processor tests
+├── repositories/     # Repository and specification tests
+├── warehouse/        # Warehouse tests
 └── utils/           # Utility tests
 logs/                 # Application logs
 ```
@@ -89,10 +93,45 @@ RECTANGLE:4:BadRect:0 0 0 3a 4 3 4 0  # Invalid character
 RECTANGLE:5:Incomplete:0 0 0 3        # Insufficient coordinates
 ```
 
+## Task II - Design Patterns Implementation
+
+### Repository Pattern
+- **ShapeRepository** class manages collections of geometric shapes
+- Methods: `add()`, `remove()`, `removeById()`, `getAll()`, `getById()`, `getByName()`
+- Query method with specification pattern support
+
+### Specification Pattern
+- Search by ID, name, coordinates
+- **QuadrantSpecification** - find shapes in coordinate quadrants
+- **DistanceRangeSpecification** - shapes within distance range from origin
+- **AreaRangeSpecification** - filter by area range
+- **VolumeRangeSpecification** - filter by volume range
+- **PerimeterRangeSpecification** - filter by perimeter range
+- **SurfaceAreaRangeSpecification** - filter by surface area range
+
+### Sorting with Comparator Interface
+- **Comparator<T>** interface implementation
+- Sort by ID, name, first point X/Y coordinates
+- **ShapeComparators** class with static comparator instances
+
+### Warehouse (Singleton + Observer)
+- **Warehouse** class stores areas, volumes, perimeters of all shapes
+- Singleton pattern ensures single instance
+- Observer pattern: automatic metrics recalculation when shape parameters change
+- Shapes notify warehouse on parameter updates
+
+### Dependency Injection
+- Shapes receive warehouse instance through constructor
+- Improved testability and loose coupling
+
 ## Architecture Highlights
 
 - **Separation of Concerns**: Entity classes contain only data, business logic in separate calculators
 - **Factory Method Pattern**: Abstracted shape creation with type-specific factories
+- **Repository Pattern**: Centralized shape collection management
+- **Specification Pattern**: Flexible querying capabilities
+- **Singleton Pattern**: Single warehouse instance for metrics storage
+- **Observer Pattern**: Automatic updates on shape changes
 - **Custom Exceptions**: Specific error types for different failure scenarios
 - **Robust Validation**: Input data validation with graceful error handling
 - **Comprehensive Logging**: Structured logging to both console and file

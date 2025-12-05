@@ -5,7 +5,7 @@ import { logger } from '../utils/logger.js';
 export class RectangleProcessor {
   static processRectangle(rectangle: Rectangle): void {
     try {
-      const points = rectangle.getPoints();
+      const { points, name, id } = rectangle;
       const area = RectangleCalculator.calculateArea(points);
       const perimeter = RectangleCalculator.calculatePerimeter(points);
       const isValid = RectangleCalculator.isRectangle(points);
@@ -15,8 +15,8 @@ export class RectangleProcessor {
       const isConvex = RectangleCalculator.isConvex(points);
 
       logger.info('Rectangle analysis completed', {
-        name: rectangle.name,
-        id: rectangle.id,
+        name,
+        id,
         area: area.toFixed(2),
         perimeter: perimeter.toFixed(2),
         properties: { isValid, isConvex, isSquare, isRhombus, isTrapezoid },

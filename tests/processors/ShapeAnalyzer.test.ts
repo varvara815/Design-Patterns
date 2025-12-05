@@ -2,6 +2,7 @@ import { ShapeAnalyzer } from '../../src/processors/ShapeAnalyzer.js';
 import { Rectangle } from '../../src/entities/Rectangle.js';
 import { Tetrahedron } from '../../src/entities/Tetrahedron.js';
 import { Point } from '../../src/entities/Point.js';
+import { warehouse } from '../../src/warehouse/Warehouse.js';
 
 describe('ShapeAnalyzer', () => {
   it('should analyze rectangle shape', () => {
@@ -11,7 +12,12 @@ describe('ShapeAnalyzer', () => {
       new Point(4, 3),
       new Point(0, 3),
     ];
-    const rectangle = new Rectangle('rect1', 'test-rectangle', points);
+    const rectangle = new Rectangle(
+      'rect1',
+      'test-rectangle',
+      points,
+      warehouse,
+    );
 
     expect(() =>
       ShapeAnalyzer.analyzeShape(rectangle, 'RECTANGLE'),
@@ -25,7 +31,12 @@ describe('ShapeAnalyzer', () => {
       new Point(0, 1, 0),
       new Point(0, 0, 1),
     ];
-    const tetrahedron = new Tetrahedron('tetra1', 'test-tetrahedron', vertices);
+    const tetrahedron = new Tetrahedron(
+      'tetra1',
+      'test-tetrahedron',
+      vertices,
+      warehouse,
+    );
 
     expect(() =>
       ShapeAnalyzer.analyzeShape(tetrahedron, 'TETRAHEDRON'),
@@ -39,7 +50,7 @@ describe('ShapeAnalyzer', () => {
       new Point(2, 2),
       new Point(0, 2),
     ];
-    const rectangle = new Rectangle('rect1', 'square', points);
+    const rectangle = new Rectangle('rect1', 'square', points, warehouse);
 
     const result = ShapeAnalyzer.analyzeRectangle(rectangle);
 

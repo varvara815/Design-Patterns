@@ -2,6 +2,7 @@ import { AbstractShapeFactory } from './AbstractShapeFactory.js';
 import { Point } from '../entities/Point.js';
 import { Rectangle } from '../entities/Rectangle.js';
 import { DataValidator } from '../validators/DataValidator.js';
+import { warehouse } from '../warehouse/Warehouse.js';
 
 export class RectangleFactory extends AbstractShapeFactory {
   createShape(id: string, name: string, data: string[]): Rectangle {
@@ -12,7 +13,7 @@ export class RectangleFactory extends AbstractShapeFactory {
       new Point(coordinates[4], coordinates[5]),
       new Point(coordinates[6], coordinates[7]),
     ];
-    return new Rectangle(id, name, points);
+    return new Rectangle(id, name, points, warehouse);
   }
 
   validateData(data: string[]): number[] {

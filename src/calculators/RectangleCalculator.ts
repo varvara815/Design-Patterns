@@ -1,7 +1,7 @@
-import { Point } from '../entities/Point';
-import { EPSILON } from '../utils/constants';
-import { GeometryUtils } from '../utils/GeometryUtils';
-import { Geometry } from '../utils/geometry';
+import { Point } from '../entities/Point.js';
+import { EPSILON } from '../utils/constants.js';
+import { GeometryUtils } from '../utils/GeometryUtils.js';
+import { Geometry } from '../utils/geometry.js';
 
 export class RectangleCalculator {
   static calculateArea(points: Point[]): number {

@@ -52,6 +52,8 @@ module.exports = {
     '@typescript-eslint/strict-boolean-expressions': 'off',
     'no-useless-constructor': 'off',
     'no-empty-function': 'off',
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
   },
   settings: {
     'import/resolver': {
